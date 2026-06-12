@@ -1,19 +1,51 @@
 # Laravel IBGE
 
-Cliente Laravel para a [API de Metadados do IBGE](https://apimetadados.ibge.gov.br/), com cache configurável e arquitetura preparada para evolução da API externa.
+Package Laravel para consumir e sincronizar dados da [API de Metadados do IBGE](https://apimetadados.ibge.gov.br/).
 
-## Instalação
+Inclui cache configurável, persistência em banco de dados, migrations publicáveis, modelos Eloquent e jobs para atualização mensal.
+
+## Instalação via Composer
+
+Instale o package diretamente pelo Composer:
 
 ```bash
 composer require andmarruda/laravel-ibge
+```
+
+O Laravel descobre automaticamente o service provider e a facade do package.
+
+Para publicar a configuração:
+
+```bash
 php artisan vendor:publish --tag=ibge-config
+```
+
+As migrations são carregadas automaticamente. Para publicá-las no projeto e poder customizá-las:
+
+```bash
 php artisan vendor:publish --tag=ibge-migrations
 php artisan migrate
 ```
 
-O service provider e a facade são descobertos automaticamente pelo Laravel.
+Caso não queira customizar as migrations, basta executar:
 
-As migrations também são carregadas automaticamente pelo package. Publique-as quando precisar customizar as tabelas antes de executar `migrate`.
+```bash
+php artisan migrate
+```
+
+## Início rápido
+
+Consulte a API usando a facade:
+
+```php
+use Andmarruda\LaravelIbge\Facades\Ibge;
+
+$pesquisas = Ibge::pesquisas();
+$ocorrencias = Ibge::ocorrencias('CD');
+$censo2010 = Ibge::ocorrencia('CD', 2010);
+$metas = Ibge::metas(6);
+$ficha = Ibge::fichaMetodologica('6-1-1');
+```
 
 ## Uso
 
