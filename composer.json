@@ -1,0 +1,45 @@
+{
+    "name": "andmarruda/laravel-ibge",
+    "description": "Cliente Laravel para a API de Metadados do IBGE",
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "illuminate/bus": "^10.0|^11.0|^12.0",
+        "illuminate/cache": "^10.0|^11.0|^12.0",
+        "illuminate/console": "^10.0|^11.0|^12.0",
+        "illuminate/database": "^10.0|^11.0|^12.0",
+        "illuminate/http": "^10.0|^11.0|^12.0",
+        "illuminate/queue": "^10.0|^11.0|^12.0",
+        "illuminate/support": "^10.0|^11.0|^12.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^8.0|^9.0|^10.0",
+        "phpunit/phpunit": "^10.5|^11.0|^12.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Andmarruda\\LaravelIbge\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Andmarruda\\LaravelIbge\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Andmarruda\\LaravelIbge\\IbgeServiceProvider"
+            ],
+            "aliases": {
+                "Ibge": "Andmarruda\\LaravelIbge\\Facades\\Ibge"
+            }
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
